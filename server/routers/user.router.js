@@ -3,7 +3,7 @@ const UserModel = require('../models/user.model');
 const crypto = require("crypto-js");
 const router = express.Router();
 
-router.post('/marsvinsdagboken/users/register', async (req, res) => {
+router.post('/veggiebox/users/register', async (req, res) => {
     const { username, password } = req.body;
       
     // check if user already exists
@@ -24,7 +24,7 @@ router.post('/marsvinsdagboken/users/register', async (req, res) => {
 });
     
 
-router.post('/marsvinsdagboken/users/login', async (req, res) => {
+router.post('/veggiebox/users/login', async (req, res) => {
     const { username, password } = req.body;
     const user = await UserModel.findOne({ username:username });
 
@@ -38,7 +38,7 @@ router.post('/marsvinsdagboken/users/login', async (req, res) => {
     res.status(200).json({id: user._id, username: user.username});
 });
 
-router.post('/marsvinsdagboken/users/logout', async (req, res) => {
+router.post('/veggiebox/users/logout', async (req, res) => {
     req.session = null;
     res.status(200).json("Logged out.");
 });

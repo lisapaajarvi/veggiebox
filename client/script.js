@@ -1,7 +1,7 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function showVeggieList(){
-    fetch("http://localhost:4000/marsvinsdagboken/products/")
+    fetch("http://localhost:4000/veggiebox/products/")
     .then(res=> res.json())
     .then(products => {
         console.log(products)
@@ -28,7 +28,7 @@ function showVeggieList(){
 
 function addVeggieToCart(veggieId) {
     console.log(veggieId)
-    fetch("http://localhost:4000/marsvinsdagboken/products/" + veggieId)
+    fetch("http://localhost:4000/veggiebox/products/" + veggieId)
     .then(res => res.json())
     .then(product => {
         const itemInCart = cart.find(cartProduct => cartProduct._id === product._id)
@@ -38,6 +38,7 @@ function addVeggieToCart(veggieId) {
             const updatedCart = [...cart, {...product, quantity: 1}]
             cart = updatedCart;    
         }
+        console.log(cart)
         localStorage.setItem("cart", JSON.stringify(cart))
     })
 }
